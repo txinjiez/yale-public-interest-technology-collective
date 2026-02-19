@@ -415,7 +415,7 @@
 <!-- PAGE HEADER -->
 <section class="page-header">
   <h1>Meet Our <em>Officers</em></h1>
-  <p>The dedicated team leading PITSC's mission to build technology for the public good.</p>
+  <p>The dedicated team leading PITSCY's mission to build technology for the public good.</p>
 </section>
 
 <!-- OFFICERS -->
@@ -426,10 +426,7 @@
   <div class="presidents-row">
     <div class="officer-card president" onclick="openBio('tina')">
       <div class="officer-photo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
+        <img src="media/TinaZeng-headshot.jpg" alt="Tina Zeng">
       </div>
       <div class="officer-role">Co-President</div>
       <div class="officer-name">Tina Zeng</div>
@@ -438,10 +435,7 @@
 
     <div class="officer-card president" onclick="openBio('andrey')">
       <div class="officer-photo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
+        <img src="media/andrey-headshot.png" alt="Andrey Sokolov">
       </div>
       <div class="officer-role">Co-President</div>
       <div class="officer-name">Andrey Sokolov</div>
@@ -454,10 +448,7 @@
   <div class="officers-grid">
     <div class="officer-card" onclick="openBio('steffi')">
       <div class="officer-photo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
+        <img src="media/steffi-headshot.jpeg" alt="Steffi Khine">
       </div>
       <div class="officer-role">Treasurer</div>
       <div class="officer-name">Steffi Khine</div>
@@ -506,16 +497,19 @@
     tina: {
       name: 'Tina Zeng',
       role: 'Co-President',
+      photo: 'media/TinaZeng-headshot.jpg',
       bio: `<p>Bio coming soon.</p>`
     },
     andrey: {
       name: 'Andrey Sokolov',
       role: 'Co-President',
+      photo: 'media/andrey-headshot.png',
       bio: `<p>Bio coming soon.</p>`
     },
     steffi: {
       name: 'Steffi Khine',
       role: 'Treasurer',
+      photo: 'media/steffi-headshot.jpeg',
       bio: `<p>Bio coming soon.</p>`
     }
   };
@@ -524,6 +518,8 @@
     const officer = officers[officerId];
     if (!officer) return;
 
+    const modalPhoto = document.getElementById('modalPhoto');
+    modalPhoto.innerHTML = `<img src="${officer.photo}" alt="${officer.name}">`;
     document.getElementById('modalRole').textContent = officer.role;
     document.getElementById('modalName').textContent = officer.name;
     document.getElementById('modalBio').innerHTML = officer.bio;

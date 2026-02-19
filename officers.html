@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Officers - Public Interest Technology Student Collective at Yale</title>
+<link rel="icon" type="image/png" href="media/yalepit-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1a1a2e;
+    --blue: #4a90c4;
+    --blue-light: #7db8e0;
+    --blue-pale: #e8f4fd;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --line: #e5e7eb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--black);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .nav-bulb {
+    width: 36px; height: 36px;
+    object-fit: contain;
+  }
+
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--black);
+  }
+
+  .nav-name span { color: var(--blue); }
+
+  nav ul {
+    list-style: none;
+    display: flex; gap: 2.5rem;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--blue); }
+
+  .nav-cta {
+    background: var(--blue);
+    color: white !important;
+    padding: 0.5rem 1.3rem;
+    border-radius: 100px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--black) !important; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 10rem 3rem 4rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--blue-pale) 0%, var(--white) 100%);
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 em {
+    font-style: italic;
+    color: var(--blue);
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* OFFICERS SECTION */
+  .officers-section {
+    padding: 4rem 3rem 7rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  /* PRESIDENTS ROW */
+  .presidents-row {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+  }
+
+  /* OTHER OFFICERS */
+  .officers-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* OFFICER CARD */
+  .officer-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--line);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    width: 280px;
+  }
+
+  .officer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+
+  .officer-card.president {
+    width: 320px;
+    border: 2px solid var(--blue-light);
+    background: linear-gradient(180deg, var(--blue-pale) 0%, var(--white) 50%);
+  }
+
+  .officer-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    background: var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .officer-card.president .officer-photo {
+    width: 160px;
+    height: 160px;
+    border: 4px solid var(--blue-light);
+  }
+
+  .officer-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .officer-photo svg {
+    width: 60px;
+    height: 60px;
+    color: var(--gray);
+    opacity: 0.5;
+  }
+
+  .officer-role {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.5rem;
+  }
+
+  .officer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .officer-card.president .officer-name {
+    font-size: 1.75rem;
+  }
+
+  .officer-tagline {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  .click-hint {
+    font-size: 0.75rem;
+    color: var(--blue);
+    margin-top: 1rem;
+    opacity: 0.7;
+  }
+
+  /* BIO MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 26, 46, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal {
+    background: white;
+    border-radius: 24px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 3rem;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+
+  .modal-overlay.active .modal {
+    transform: translateY(0);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--blue-pale);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover {
+    background: var(--blue-light);
+  }
+
+  .modal-close svg {
+    width: 20px;
+    height: 20px;
+    color: var(--black);
+  }
+
+  .modal-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    background: var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 4px solid var(--blue-light);
+  }
+
+  .modal-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .modal-photo svg {
+    width: 50px;
+    height: 50px;
+    color: var(--gray);
+    opacity: 0.5;
+  }
+
+  .modal-role {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-name {
+    text-align: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-bio {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--gray);
+  }
+
+  .modal-bio p {
+    margin-bottom: 1rem;
+  }
+
+  .modal-bio p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.95rem;
+    color: var(--black);
+  }
+
+  .footer-logo span { color: var(--blue); }
+
+  footer p { font-size: 0.82rem; color: var(--gray); }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--blue); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .page-header { padding: 8rem 1.5rem 3rem; }
+    .officers-section { padding: 3rem 1.5rem 5rem; }
+    .presidents-row { gap: 2rem; }
+    .officer-card, .officer-card.president { width: 100%; max-width: 320px; }
+    footer { flex-direction: column; text-align: center; }
+    .modal { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img class="nav-bulb" src="media/yalepit-logo.png" alt="PITSC Logo">
+    <div class="nav-name"><span>Public Interest Technology Student Collective at Yale</span></div>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#mission">Mission</a></li>
+    <li><a href="index.html#initiatives">Initiatives</a></li>
+    <li><a href="index.html#events">Events</a></li>
+    <li><a href="https://forms.gle/SN9Z8QEHAB6Czuxt6" class="nav-cta">Join Us</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <h1>Meet Our <em>Officers</em></h1>
+  <p>The dedicated team leading PITSC's mission to build technology for the public good.</p>
+</section>
+
+<!-- OFFICERS -->
+<section class="officers-section">
+
+  <!-- Presidents -->
+  <div class="section-label">Co-Presidents</div>
+  <div class="presidents-row">
+    <div class="officer-card president" onclick="openBio('tina')">
+      <div class="officer-photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="officer-role">Co-President</div>
+      <div class="officer-name">Tina Zeng</div>
+      <div class="officer-tagline">Click to read bio</div>
+    </div>
+
+    <div class="officer-card president" onclick="openBio('andrey')">
+      <div class="officer-photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="officer-role">Co-President</div>
+      <div class="officer-name">Andrey Sokolov</div>
+      <div class="officer-tagline">Click to read bio</div>
+    </div>
+  </div>
+
+  <!-- Other Officers -->
+  <div class="section-label">Executive Board</div>
+  <div class="officers-grid">
+    <div class="officer-card" onclick="openBio('steffi')">
+      <div class="officer-photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="officer-role">Treasurer</div>
+      <div class="officer-name">Steffi Khine</div>
+      <div class="officer-tagline">Click to read bio</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- BIO MODAL -->
+<div class="modal-overlay" id="bioModal" onclick="closeBio(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeBio(event)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="modal-photo" id="modalPhoto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </div>
+    <div class="modal-role" id="modalRole"></div>
+    <div class="modal-name" id="modalName"></div>
+    <div class="modal-bio" id="modalBio"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo"><span>Public Interest Technology Student Collective</span><br>at Yale</div>
+  </div>
+  <p>&copy; 2026 PITSC &middot; New Haven, Connecticut</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+    <a href="mailto:hello@yalepit.org">Contact Us</a>
+  </div>
+</footer>
+
+<script>
+  // Officer data
+  const officers = {
+    tina: {
+      name: 'Tina Zeng',
+      role: 'Co-President',
+      bio: `<p>Bio coming soon.</p>`
+    },
+    andrey: {
+      name: 'Andrey Sokolov',
+      role: 'Co-President',
+      bio: `<p>Bio coming soon.</p>`
+    },
+    steffi: {
+      name: 'Steffi Khine',
+      role: 'Treasurer',
+      bio: `<p>Bio coming soon.</p>`
+    }
+  };
+
+  function openBio(officerId) {
+    const officer = officers[officerId];
+    if (!officer) return;
+
+    document.getElementById('modalRole').textContent = officer.role;
+    document.getElementById('modalName').textContent = officer.name;
+    document.getElementById('modalBio').innerHTML = officer.bio;
+    document.getElementById('bioModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBio(event) {
+    if (event) event.stopPropagation();
+    document.getElementById('bioModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Close on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeBio();
+    }
+  });
+</script>
+
+</body>
+</html>

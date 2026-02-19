@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources - Public Interest Technology Student Collective at Yale</title>
+<link rel="icon" type="image/png" href="media/yalepit-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1a1a2e;
+    --blue: #4a90c4;
+    --blue-light: #7db8e0;
+    --blue-pale: #e8f4fd;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --line: #e5e7eb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--black);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .nav-bulb {
+    width: 36px; height: 36px;
+    object-fit: contain;
+  }
+
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--black);
+  }
+
+  .nav-name span { color: var(--blue); }
+
+  nav ul {
+    list-style: none;
+    display: flex; gap: 2.5rem;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--blue); }
+  nav ul a.active { color: var(--blue); }
+
+  .nav-cta {
+    background: var(--blue);
+    color: white !important;
+    padding: 0.5rem 1.3rem;
+    border-radius: 100px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--black) !important; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 10rem 3rem 4rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--blue-pale) 0%, var(--white) 100%);
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 em {
+    font-style: italic;
+    color: var(--blue);
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* RESOURCES CONTENT */
+  .resources-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 3rem 7rem;
+  }
+
+  /* SECTION */
+  .resource-section {
+    margin-bottom: 5rem;
+  }
+
+  .resource-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--blue-pale);
+  }
+
+  .section-header-icon {
+    width: 44px; height: 44px;
+    background: var(--blue-pale);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-header-icon svg {
+    width: 22px; height: 22px;
+  }
+
+  .section-header-text {}
+
+  .section-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.2rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  /* RESOURCE CARDS */
+  .resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .resource-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .resource-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+    border-color: var(--blue-light);
+  }
+
+  .resource-card-icon {
+    width: 40px; height: 40px;
+    background: var(--blue-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .resource-card:hover .resource-card-icon {
+    background: var(--blue);
+  }
+
+  .resource-card-icon svg {
+    width: 18px; height: 18px;
+    color: var(--blue);
+    transition: color 0.2s;
+  }
+
+  .resource-card:hover .resource-card-icon svg {
+    color: white;
+  }
+
+  .resource-card-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .resource-card-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+
+  .resource-card:hover .resource-card-name {
+    color: var(--blue);
+  }
+
+  .resource-card-url {
+    font-size: 0.78rem;
+    color: var(--blue);
+    opacity: 0.6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .resource-card-arrow {
+    flex-shrink: 0;
+    color: var(--line);
+    transition: color 0.2s, transform 0.2s;
+    align-self: center;
+  }
+
+  .resource-card:hover .resource-card-arrow {
+    color: var(--blue);
+    transform: translateX(3px);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.95rem;
+    color: var(--black);
+  }
+
+  .footer-logo span { color: var(--blue); }
+
+  footer p { font-size: 0.82rem; color: var(--gray); }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--blue); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .page-header { padding: 8rem 1.5rem 3rem; }
+    .resources-content { padding: 3rem 1.5rem 5rem; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img class="nav-bulb" src="media/yalepit-logo.png" alt="PITSC Logo">
+    <div class="nav-name"><span>Public Interest Technology Student Collective at Yale</span></div>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#mission">Mission</a></li>
+    <li><a href="index.html#initiatives">Initiatives</a></li>
+    <li><a href="index.html#events">Events</a></li>
+    <li><a href="officers.html">Officers</a></li>
+    <li><a href="resources.html" class="active">Resources</a></li>
+    <li><a href="https://forms.gle/SN9Z8QEHAB6Czuxt6" class="nav-cta">Join Us</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <h1>Campus &amp; Community <em>Resources</em></h1>
+  <p>A curated list of programs, centers, and opportunities at Yale and beyond for students interested in public interest technology.</p>
+</section>
+
+<!-- RESOURCES -->
+<div class="resources-content">
+
+  <!-- AT YALE -->
+  <div class="resource-section">
+    <div class="section-header">
+      <div class="section-header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a90c4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="section-header-text">
+        <div class="section-tag">On Campus</div>
+        <div class="section-title">At Yale</div>
+      </div>
+    </div>
+
+    <div class="resource-list">
+      <a class="resource-card" href="https://criticalcomputing.yale.edu/" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Critical Computing Initiative</div>
+          <div class="resource-card-url">criticalcomputing.yale.edu</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <a class="resource-card" href="https://yaledailynews.com/articles/computing-culture-and-society-certificate-to-launch-in-the-fall" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Computing, Culture &amp; Society</div>
+          <div class="resource-card-url">yaledailynews.com</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <a class="resource-card" href="https://dec.yale.edu/" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Digital Ethics Center</div>
+          <div class="resource-card-url">dec.yale.edu</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <a class="resource-card" href="https://law.yale.edu/isp" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Information Society Project (Yale Law School)</div>
+          <div class="resource-card-url">law.yale.edu/isp</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <a class="resource-card" href="https://poorvucenter.yale.edu/teaching/teaching-resource-library/ai-guidance-for-teachers/ai-support-resources/student-ai" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Student AI Liaisons at the Poorvu Center</div>
+          <div class="resource-card-url">poorvucenter.yale.edu</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <a class="resource-card" href="https://ai.yale.edu/" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">From Innovation to Impact: AI at Yale Symposium</div>
+          <div class="resource-card-url">ai.yale.edu</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- GENERAL -->
+  <div class="resource-section">
+    <div class="section-header">
+      <div class="section-header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a90c4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <div class="section-header-text">
+        <div class="section-tag">Beyond Campus</div>
+        <div class="section-title">General</div>
+      </div>
+    </div>
+
+    <div class="resource-list">
+      <a class="resource-card" href="https://www.chriskuang.com/civictech/#fnref1" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Civic Tech Resource Guide</div>
+          <div class="resource-card-url">chriskuang.com/civictech</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <a class="resource-card" href="https://codingitforward.com/fellowship" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Coding it Forward Fellowship</div>
+          <div class="resource-card-url">codingitforward.com/fellowship</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <a class="resource-card" href="https://www.build4good.tech/students" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Build4Good — Students</div>
+          <div class="resource-card-url">build4good.tech/students</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <a class="resource-card" href="https://community.publicgood.tech/mentorship?mc_cid=8b025cc50d" target="_blank" rel="noopener">
+        <div class="resource-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="resource-card-body">
+          <div class="resource-card-name">Public Good Tech — Mentorship Community</div>
+          <div class="resource-card-url">community.publicgood.tech/mentorship</div>
+        </div>
+        <svg class="resource-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo"><span>Public Interest Technology Student Collective</span><br>at Yale</div>
+  </div>
+  <p>&copy; 2026 PITSC &middot; New Haven, Connecticut</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+    <a href="mailto:hello@yalepit.org">Contact Us</a>
+  </div>
+</footer>
+
+</body>
+</html>

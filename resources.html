@@ -282,9 +282,86 @@
 
   .footer-links a:hover { color: var(--blue); }
 
+
+  /* HAMBURGER BUTTON */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px; height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.15s ease;
+  }
+
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE DROPDOWN */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 61px; left: 0; right: 0;
+    z-index: 98;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    padding: 0.5rem 0 1rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transform: translateY(-8px);
+    opacity: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .mobile-menu.open {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--blue); background: var(--blue-pale); }
+
+  .mobile-menu .mobile-cta {
+    font-weight: 600;
+    background: var(--blue);
+    color: white !important;
+    margin: 0.75rem 1.5rem 0;
+    border-radius: 100px;
+    text-align: center;
+    border-bottom: none !important;
+  }
+
+  .mobile-menu .mobile-cta:hover { background: var(--black) !important; }
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     nav ul { display: none; }
+    .nav-hamburger { display: flex; }
     .page-header { padding: 8rem 1.5rem 3rem; }
     .resources-content { padding: 3rem 1.5rem 5rem; }
     footer { flex-direction: column; text-align: center; }
@@ -308,7 +385,38 @@
     <li><a href="resources.html" class="active">Resources</a></li>
     <li><a href="https://forms.gle/SN9Z8QEHAB6Czuxt6" class="nav-cta">Join Us</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE DROPDOWN -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="index.html#mission">Mission</a>
+  <a href="index.html#initiatives">Initiatives</a>
+  <a href="index.html#events">Events</a>
+  <a href="officers.html">Officers</a>
+  <a href="https://forms.gle/SN9Z8QEHAB6Czuxt6" class="mobile-cta">Join Us</a>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+  hamburger.addEventListener('click', function() {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+  });
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMenu();
+    }
+  });
+</script>
 
 <!-- PAGE HEADER -->
 <section class="page-header">

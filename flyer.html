@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PITSCY Flyer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1a1a2e;
+    --blue: #4a90c4;
+    --blue-light: #7db8e0;
+    --blue-pale: #e8f4fd;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --line: #e5e7eb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #d0d0d0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TOP BAND */
+  .top-band {
+    background: #e8f4fc;
+    padding: 1.8rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* .top-band::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(74,144,196,0.12);
+  }
+
+  .top-band::before {
+    content: '';
+    position: absolute;
+    right: 60px; bottom: -80px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(74,144,196,0.08);
+  } */
+
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-img {
+    width: 84px;
+    height: 84px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .org-name {
+    font-family: 'DM Serif Display', serif;
+    color: #4a90c4;
+    font-size: 1.95rem;
+    line-height: 1.2;
+  }
+
+  .org-name span { color: var(--blue-light); }
+
+  /* BODY */
+  .body {
+    flex: 1;
+    padding: 1.4rem 2.5rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    min-height: 0;
+  }
+
+  .mission-text {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--gray);
+    border-left: 3px solid var(--blue);
+    padding-left: 1rem;
+  }
+
+  .section-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 16px; height: 2px;
+    background: var(--blue);
+    display: block;
+  }
+
+  /* PILLARS */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .pillar {
+    background: white;
+    padding: 1rem;
+  }
+
+  .pillar-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar-icon {
+    width: 26px; height: 26px;
+    background: var(--blue-pale);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pillar-icon svg { width: 14px; height: 14px; }
+
+  .pillar-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .pillar-text {
+    font-size: 0.73rem;
+    line-height: 1.55;
+    color: var(--gray);
+  }
+
+  /* INITIATIVES */
+  .initiatives {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.7rem;
+  }
+
+  .init-card {
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .init-card.dark { background: var(--black); color: white; }
+  .init-card.pale { background: var(--blue-pale); color: var(--black); }
+  .init-card.blue { background: var(--blue); color: white; }
+
+  .init-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
+  }
+
+  .init-desc {
+    font-size: 0.71rem;
+    line-height: 1.55;
+    opacity: 0.78;
+  }
+
+  /* BOTTOM ROW */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.2rem;
+    align-items: stretch;
+    margin-top: auto;
+  }
+
+  .join-box {
+    background: var(--blue-pale);
+    border: 1px solid rgba(74,144,196,0.2);
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .join-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--black);
+    margin-bottom: 0.3rem;
+  }
+
+  .join-box p {
+    font-size: 0.74rem;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 0.7rem;
+  }
+
+  .join-detail {
+    font-size: 0.78rem;
+    color: var(--blue);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  /* QR */
+  .qr-block {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .qr-box {
+    width: 130px;
+    height: 130px;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+  }
+
+  .qr-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .qr-label {
+    font-size: 0.62rem;
+    color: var(--gray);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media print {
+    body { background: none; padding: 0; }
+    .page { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOP BAND -->
+  <div class="top-band">
+    <div class="header-row">
+      <img class="logo-img" src="media/flyer-logo.png" alt="PITSCY Logo">
+      <div class="org-name">
+        Public Interest Technology<br>
+        Student Collective at Yale
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- Mission -->
+    <div>
+      <div class="section-label">Our Mission</div>
+      <p class="mission-text">The Public Interest Technology Student Collective exists to empower Yale students to understand, critique, and shape technologies that impact society. We are building a community of practice by connecting students with faculty, practitioners, and hands-on learning and professional experiences that cultivate responsible, civic-minded technologists.</p>
+    </div>
+
+    <!-- Pillars -->
+    <div>
+      <div class="section-label">Our Three Pillars</div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-header">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 26 26" fill="none"><path d="M13 23V13" stroke="#4a90c4" stroke-width="2.2" stroke-linecap="round"/><path d="M13 16c0 0-5-1-5-6 0 0 4 0 5 6z" stroke="#4a90c4" stroke-width="2" fill="none"/><path d="M13 13c0 0 5-1 5-6 0 0-4 0-5 6z" stroke="#4a90c4" stroke-width="2" fill="none"/><path d="M8 23h10" stroke="#4a90c4" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="pillar-title">Activation</div>
+          </div>
+          <div class="pillar-text">Workshops and speaker series to inspire public interest technologists.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-header">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 26 26" fill="none"><circle cx="13" cy="8" r="3" stroke="#4a90c4" stroke-width="2.2"/><path d="M7 22c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#4a90c4" stroke-width="2.2" stroke-linecap="round"/><circle cx="5" cy="10" r="2.2" stroke="#4a90c4" stroke-width="2"/><path d="M2 22c0-2.209 1.343-4 3-4" stroke="#4a90c4" stroke-width="2" stroke-linecap="round"/><circle cx="21" cy="10" r="2.2" stroke="#4a90c4" stroke-width="2"/><path d="M24 22c0-2.209-1.343-4-3-4" stroke="#4a90c4" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="pillar-title">Community</div>
+          </div>
+          <div class="pillar-text">A vibrant network across law, CS, public health, policy, and humanities.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-header">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="#4a90c4" stroke-width="2.2"/><path d="M3 13h20" stroke="#4a90c4" stroke-width="2" stroke-linecap="round"/><path d="M13 3c-3 3-4.5 6.5-4.5 10S10 20 13 23c3-3 4.5-6.5 4.5-10S16 6 13 3z" stroke="#4a90c4" stroke-width="2"/></svg>
+            </div>
+            <div class="pillar-title">Impact</div>
+          </div>
+          <div class="pillar-text">Real-world projects with nonprofits, government, and civic organizations.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initiatives -->
+    <div>
+      <div class="section-label">Programming</div>
+      <div class="initiatives">
+        <div class="init-card dark">
+          <div class="init-title">Speaker Events & Career Exploration</div>
+          <div class="init-desc">Technologists, policymakers, and advocates sharing real paths into public interest tech.</div>
+        </div>
+        <div class="init-card pale">
+          <div class="init-title">Pro-Bono Projects</div>
+          <div class="init-desc">Software development for New Haven nonprofits and city agencies.</div>
+        </div>
+        <div class="init-card blue">
+          <div class="init-title">Fellowship Network</div>
+          <div class="init-desc">Connecting members with opportunities in government, civil society, and impact tech.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom row: join + QR -->
+    <div class="bottom-row">
+      <div class="join-box">
+        <h3>Ready to make an impact?</h3>
+        <p>Membership is open to all Yale students, regardless of major or background. Fill out the interest form to get involved.</p>
+        <div class="join-detail">bit.ly/pitscy</div>
+      </div>
+
+      <div class="qr-block">
+        <div class="qr-box">
+          <img src="media/join_qr.png" alt="QR code to join">
+        </div>
+        <div class="qr-label">Scan to Join</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

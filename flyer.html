@@ -79,6 +79,16 @@
     height: 84px;
     object-fit: contain;
     flex-shrink: 0;
+    display: block;
+    text-decoration: none;
+    border: none;
+  }
+
+  .org-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    align-items: flex-end;
   }
 
   .org-name {
@@ -86,9 +96,22 @@
     color: #4a90c4;
     font-size: 1.95rem;
     line-height: 1.2;
+    text-align: right;
   }
 
   .org-name span { color: var(--blue-light); }
+
+  .org-url {
+    font-size: 0.9rem;
+    color: var(--blue);
+    margin-top: 0.35rem;
+    display: inline-block;
+  }
+
+  .org-url a {
+    color: inherit;
+    text-decoration: none;
+  }
 
   /* BODY */
   .body {
@@ -185,7 +208,7 @@
     padding: 1rem;
   }
 
-  .init-card.dark { background: var(--black); color: white; }
+  .init-card.dark { background: #2C4A6B; color: white;  }
   .init-card.pale { background: var(--blue-pale); color: var(--black); }
   .init-card.blue { background: var(--blue); color: white; }
 
@@ -288,10 +311,13 @@
   <!-- TOP BAND -->
   <div class="top-band">
     <div class="header-row">
-      <img class="logo-img" src="media/flyer-logo.png" alt="PITSCY Logo">
-      <div class="org-name">
-        Public Interest Technology<br>
-        Student Collective at Yale
+      <img class="logo-img" src="media/pitscy-logo.png" alt="PITSCY Logo">
+      <div class="org-block">
+        <div class="org-name">
+          Public Interest Technology<br>
+          Student Collective at Yale
+        </div>
+        <div class="org-url"><a href="https://yale-pit.org">www.yale-pit.org</a></div>
       </div>
     </div>
   </div>
@@ -302,7 +328,7 @@
     <!-- Mission -->
     <div>
       <div class="section-label">Our Mission</div>
-      <p class="mission-text">The Public Interest Technology Student Collective exists to empower Yale students to understand, critique, and shape technologies that impact society. We are building a community of practice by connecting students with faculty, practitioners, and hands-on learning and professional experiences that cultivate responsible, civic-minded technologists.</p>
+      <p class="mission-text">Public Interest Technology Student Collective (PITSCY) is the only student organization at Yale dedicated to tech for social impact. PITSCY empowers students to understand, critique, and shape technologies that impact society. <br> We connect students with faculty, practitioners, and hands-on experiences to build a community of responsible, civic-minded technologists.</p>
     </div>
 
     <!-- Pillars -->
@@ -316,7 +342,7 @@
             </div>
             <div class="pillar-title">Activation</div>
           </div>
-          <div class="pillar-text">Workshops and speaker series to inspire public interest technologists.</div>
+          <div class="pillar-text">Exploring public interest technology through workshops and speaker series</div>
         </div>
         <div class="pillar">
           <div class="pillar-header">
@@ -325,7 +351,7 @@
             </div>
             <div class="pillar-title">Community</div>
           </div>
-          <div class="pillar-text">A vibrant network across law, CS, public health, policy, and humanities.</div>
+          <div class="pillar-text">Building a cross-disciplinary network across CS, law, policy, and the humanities</div>
         </div>
         <div class="pillar">
           <div class="pillar-header">
@@ -334,7 +360,7 @@
             </div>
             <div class="pillar-title">Impact</div>
           </div>
-          <div class="pillar-text">Real-world projects with nonprofits, government, and civic organizations.</div>
+          <div class="pillar-text">Working on real-world projects with nonprofits, government, and civic organizations</div>
         </div>
       </div>
     </div>
@@ -344,16 +370,16 @@
       <div class="section-label">Programming</div>
       <div class="initiatives">
         <div class="init-card dark">
-          <div class="init-title">Speaker Events & Career Exploration</div>
-          <div class="init-desc">Technologists, policymakers, and advocates sharing real paths into public interest tech.</div>
+          <div class="init-title">Speaker Events</div>
+          <div class="init-desc">Hosting technologists, policymakers, and advocates to share pathways into public interest tech</div>
         </div>
         <div class="init-card pale">
           <div class="init-title">Pro-Bono Projects</div>
-          <div class="init-desc">Software development for New Haven nonprofits and city agencies.</div>
+          <div class="init-desc">Connecting students with opportunities to develop software for New Haven nonprofits and city agencies</div>
         </div>
         <div class="init-card blue">
-          <div class="init-title">Fellowship Network</div>
-          <div class="init-desc">Connecting members with opportunities in government, civil society, and impact tech.</div>
+          <div class="init-title">Career-Building</div>
+          <div class="init-desc">Engaging students in hackathons, policy labs, career fairs, applied workshops, case study research</div>
         </div>
       </div>
     </div>
@@ -361,7 +387,7 @@
     <!-- Bottom row: join + QR -->
     <div class="bottom-row">
       <div class="join-box">
-        <h3>Ready to make an impact?</h3>
+        <h3>Ready to shape the future of tech?</h3>
         <p>Membership is open to all Yale students, regardless of major or background. Fill out the interest form to get involved.</p>
         <div class="join-detail">bit.ly/pitscy</div>
       </div>
@@ -370,7 +396,7 @@
         <div class="qr-box">
           <img src="media/join_qr.png" alt="QR code to join">
         </div>
-        <div class="qr-label">Scan to Join</div>
+        <div class="qr-label">Scan to Join <br> PITSCY</div>
       </div>
     </div>
 

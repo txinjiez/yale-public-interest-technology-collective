@@ -480,6 +480,39 @@
   }
 
   .event-info { font-size: 0.85rem; color: var(--gray); }
+  .event-info a { color: var(--blue); }
+  .event-info a:hover { color: var(--black); }
+
+  /* EVENT TABS */
+  .event-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .event-tab {
+    padding: 0.5rem 1.4rem;
+    border-radius: 100px;
+    border: 1.5px solid var(--line);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .event-tab:hover { border-color: var(--blue); color: var(--blue); }
+
+  .event-tab.active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+  }
+
+  .events-panel { display: none; }
+  .events-panel.active { display: block; }
 
   /* JOIN */
   .join-section {
@@ -681,7 +714,7 @@
     <li><a href="#mission">Mission</a></li>
     <li><a href="#initiatives">Initiatives</a></li>
     <li><a href="#events">Events</a></li>
-    <li><a href="officers.html">Officers</a></li>
+    <li><a href="team.html">Team</a></li>
     <li><a href="resources.html">Resources</a></li>
     <li><a href="https://forms.gle/SN9Z8QEHAB6Czuxt6" class="nav-cta">Join Us</a></li>
   </ul>
@@ -748,7 +781,7 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
         Join the Collective
       </a>
-      <a href="#mission" class="btn btn-secondary">Learn More</a>
+      <!-- <a href="#mission" class="btn btn-secondary">Learn More</a> -->
     </div>
   </div>
 </section>
@@ -832,21 +865,21 @@
   <div class="initiatives-grid">
     <div class="initiative-card dark">
       <div class="card-decoration"></div>
-      <div class="card-tag">Community</div>
-      <h3>Speaker Events & Career Exploration</h3>
+      <!-- <div class="card-tag">Community</div> -->
+      <h3>Speaker Events</h3>
       <p>Through our ongoing speaker series, we bring together technologists, policymakers, lawyers, and advocates who have built careers at the intersection of technology and the public good. Each event is designed not just to inform, but to open doors — giving Yale students a window into what it actually looks like to work in public interest tech, government, nonprofits, and beyond.</p>
     </div>
     <div class="right-col">
       <div class="initiative-card light">
-        <div class="card-tag">Impact</div>
+        <!-- <div class="card-tag">Impact</div> -->
         <h3>Projects</h3>
         <p>Pro-bono software development for New Haven nonprofits and city agencies.</p>
       </div>
       <div class="initiative-card blue">
         <div class="card-decoration"></div>
-        <div class="card-tag">Career</div>
-        <h3>Fellowship Network</h3>
-        <p>Connecting members with opportunities in government, civil society, and impact-driven tech.</p>
+        <!-- <div class="card-tag">Career</div> -->
+        <h3>Career-Building</h3>
+        <p>PITSCY engages students in hackathons, policy labs, career fairs, applied workshops, case study research.</p>
       </div>
     </div>
   </div>
@@ -854,61 +887,112 @@
 
 <!-- EVENTS -->
 <section class="section" id="events" style="padding-top: 0;">
-  <div class="section-tag">Upcoming Events</div>
+  <div class="section-tag">Events</div>
   <h2 class="section-title">Join the <em>conversation</em></h2>
 
+  <div class="event-tabs">
+    <button class="event-tab active" data-tab="upcoming">Upcoming</button>
+    <button class="event-tab" data-tab="past">Past</button>
+  </div>
+
   <div class="events-list">
+    <!-- UPCOMING EVENTS -->
+    <div id="tab-upcoming" class="events-panel active">
       <div class="event-item">
-      <div class="event-date">
-        <div class="month">Feb</div>
-        <div class="day">25</div>
-      </div>
-      <div>
-        <div class="event-meta">
-          <span class="event-tag">Workshop</span>
+        <div class="event-date">
+          <div class="month">Mar</div>
+          <div class="day">30</div>
         </div>
-        <div class="event-title">The Civic AI Playbook: Leveraging Data for Public Service</div>
-        <div class="event-info">Tsai City · 5:30 - 7:30 PM · <a href="https://luma.com/ts53pdg4">Register Here</a></div>
+        <div>
+          <div class="event-meta">
+            <span class="event-tag">Launch</span>
+          </div>
+          <div class="event-title">Computing, Culture & Society Certificate</div>
+          <div class="event-info">Humanities Quadrangle 136 · 12:00 - 1:00 PM</div>
+        </div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">Apr</div>
+          <div class="day">21</div>
+        </div>
+        <div>
+          <div class="event-meta">
+            <span class="event-tag">Mixer</span>
+          </div>
+          <div class="event-title">Tech for Social Impact!: Bulldog Days Cookies & Convos wih PITSCY</div>
+          <div class="event-info">Worried tech is ruining everything? Or convinced it’s going to fix it all?
+Either way—come for cookies and conversations with PITSCY, Yale’s only student organization focused on tech for social impact. · Location & Time TBD</div>
+        </div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">Apr</div>
+          <div class="day">28</div>
+        </div>
+        <div>
+          <div class="event-meta">
+            <span class="event-tag">Conference</span>
+          </div>
+          <div class="event-title">From Innovation to Impact: AI at Yale Symposium</div>
+          <div class="event-info">Kline Tower · All Day · Lightning talks, Poster sessions, Panels, Demonstrations, Performances · <a href="https://ai.yale.edu/opportunities/ai-at-yale-symposium-2026">Register Here · PITSCY will be tabling, come talk to us!</a></div>
+        </div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">Fall</div>
+          <div class="day">2026</div>
+        </div>
+        <div>
+          <div class="event-meta">
+            <span class="event-tag">Speaker Series</span>
+          </div>
+          <div class="event-title"></div>
+          <div class="event-info">Speakers like Briana Vecchione, Bruce Schneider, Jessica Cole, Katie Cumskiy, Theodora Skeadas · <a href="https://forms.gle/SN9Z8QEHAB6Czuxt6">Sign up for updates</a></div>
+        </div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">Fall</div>
+          <div class="day">2026</div>
+        </div>
+        <div>
+          <div class="event-meta">
+            <span class="event-tag">Hackathon</span>
+          </div>
+          <div class="event-title"></div>
+          <div class="event-info">we may have a special smart infrastructure startup 👀 as a sponsor for a urban innovation hackathon · <a href="https://forms.gle/SN9Z8QEHAB6Czuxt6">Sign up for updates</a></div>
+        </div>
       </div>
     </div>
-    <div class="event-item">
-      <div class="event-date">
-        <div class="month">Mar</div>
-        <div class="day">02</div>
-      </div>
-      <div>
-        <div class="event-meta">
-          <span class="event-tag">Workshop</span>
+
+    <!-- PAST EVENTS -->
+    <div id="tab-past" class="events-panel">
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">Mar</div>
+          <div class="day">02</div>
         </div>
-        <div class="event-title">Trebor Scholz's Open Session: the Solidarity Stack and the Fight to Rebuild Al Infrastructure Cooperatively</div>
-        <div class="event-info">Humanities Quadrangle 276 · 1:30 - 3:20 PM · <a href="https://docs.google.com/forms/d/e/1FAIpQLSer7bPuZnS-0A3tRelT_TVfhwyYImy93vQ5PD9ZskJhNpJv8Q/viewform">Register Here </a></div>
-      </div>
-    </div>
-    <div class="event-item">
-    <!-- <div class="event-item">
-      <div class="event-date">
-        <div class="month">Apr</div>
-        <div class="day">05</div>
-      </div>
-      <div>
-        <div class="event-meta">
-          <span class="event-tag">Annual</span>
+        <div>
+          <div class="event-meta">
+            <span class="event-tag">Workshop</span>
+          </div>
+          <div class="event-title">Trebor Scholz’s Open Session: the Solidarity Stack and the Fight to Rebuild Al Infrastructure Cooperatively</div>
+          <div class="event-info">WLH 276 · 1:30 - 3:20 PM · <a href="https://docs.google.com/forms/d/e/1FAIpQLSer7bPuZnS-0A3tRelT_TVfhwyYImy93vQ5PD9ZskJhNpJv8Q/viewform">Register Here</a></div>
         </div>
-        <div class="event-title">Public Interest Tech Symposium 2026</div>
-        <div class="event-info">Evans Hall · All Day · Keynotes, panels, project showcase</div>
       </div>
-    </div> -->
-    <div class="event-item">
-      <div class="event-date">
-        <div class="month">Apr</div>
-        <div class="day">28</div>
-      </div>
-      <div>
-        <div class="event-meta">
-          <span class="event-tag">Conference</span>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">Feb</div>
+          <div class="day">25</div>
         </div>
-        <div class="event-title">From Innovation to Impact: AI at Yale Symposium</div>
-        <div class="event-info">Kline Tower · All Day · Lightning talks, Poster sessions, Panels, Demonstrations, Performances · <a href="https://ai.yale.edu/opportunities/ai-at-yale-symposium-2026">Register Here</a></div>
+        <div>
+          <div class="event-meta">
+            <span class="event-tag">Workshop</span>
+          </div>
+          <div class="event-title">The Civic AI Playbook: Leveraging Data for Public Service</div>
+          <div class="event-info">Tsai City · 5:30 - 7:30 PM · <a href="https://luma.com/ts53pdg4">Register Here</a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -939,6 +1023,18 @@
     <a href="mailto:hello@yalepit.org">Contact Us</a>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll('.event-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = this.dataset.tab;
+      document.querySelectorAll('.event-tab').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.events-panel').forEach(function(p) { p.classList.remove('active'); });
+      this.classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+</script>
 
 </body>
 </html>

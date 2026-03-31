@@ -608,6 +608,21 @@
 
   .footer-links a:hover { color: var(--blue); }
 
+  .disclaimer {
+    background: var(--blue-pale);
+    border-top: 1px solid var(--line);
+    padding: 1.25rem 3rem;
+    text-align: center;
+  }
+
+  .disclaimer p {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
   /* HAMBURGER BUTTON */
   .nav-hamburger {
     display: none;
@@ -774,7 +789,7 @@
     </div>
 
     <h1>Technology for the<br><em>Public Good</em></h1>
-    <p class="hero-sub">A community of Yale students committed to building and governing technologies for social impact.</p>
+    <p class="hero-sub">The only Yale student organization dedicated to building and governing technology for social impact.</p>
 
     <div class="hero-actions">
       <a href="https://forms.gle/SN9Z8QEHAB6Czuxt6" class="btn btn-primary">
@@ -1016,13 +1031,17 @@ Either way—come for cookies and conversations with PITSCY, Yale’s only stude
   <div>
     <div class="footer-logo"><span>Public Interest Technology Student Collective</span><br>at Yale</div>
   </div>
-  <p>© 2026 PITSCY · New Haven, Connecticut</p>
+  <p>© 2026 PITSCY</p>
   <div class="footer-links">
     <a href="#">Instagram</a>
     <a href="#">LinkedIn</a>
     <a href="mailto:hello@yalepit.org">Contact Us</a>
   </div>
 </footer>
+
+<div class="disclaimer">
+  <p>This website is published by Yale College students and Yale University is not responsible for its contents. The activities on this website are not supervised or endorsed by Yale and information contained on this website does not necessarily reflect the opinions or official positions of the University. All rights are reserved to Yale University for the Yale name and trademark.</p>
+</div>
 
 <script>
   document.querySelectorAll('.event-tab').forEach(function(btn) {
